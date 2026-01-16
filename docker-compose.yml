@@ -4,17 +4,19 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: laravel-app
-    container_name: laravel_app
+    image: rapid-auto-app
+    container_name: rapid_auto
     restart: unless-stopped
+    ports:
+      - "5173:5173"
     volumes:
       - ./src:/var/www/html
     networks:
-      - laravel
+      - rapid_auto
 
   web:
     image: nginx:stable-alpine
-    container_name: laravel_nginx
+    container_name: rapid_auto_nginx
     restart: unless-stopped
     ports:
       - "80:80"
@@ -24,26 +26,26 @@ services:
     depends_on:
       - app
     networks:
-      - laravel
+      - rapid_auto
 
   db:
     image: mysql:8.0
-    container_name: laravel_mysql
+    container_name: rapid_auto_mysql
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: laravel
+      MYSQL_DATABASE: rapid_auto
       MYSQL_ROOT_PASSWORD: secret
-      MYSQL_USER: laravel
+      MYSQL_USER: rapid_auto
       MYSQL_PASSWORD: secret
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
-      - laravel
+      - rapid_auto
 
 networks:
-  laravel:
+  rapid_auto:
 
 volumes:
   mysql_data:
