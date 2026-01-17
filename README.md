@@ -126,6 +126,7 @@ La Authenticación utilize la libreria de Fortify de laravel.
 Se hizo con los datos mas sencillos para su llenado rapido;
 * Name
 * Address
+
 Se relaciona con seller a traves de la llave foranea lote_id de la tabla sellers
 
 ## Seller
@@ -135,6 +136,7 @@ Se hizo con la información que crei relevante del recurso enviado
 * Email
 * Phone
 * LoteId
+
 Se asigna la llave foranea lote_id para cumplir con la relación de que un seller corresponde a un lote
 
 # Acerca de la Justificación del criterio de la asignación de vendedores
