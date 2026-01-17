@@ -15,7 +15,7 @@ class Seller extends Model
         'lote_id',
     ];
 
-
+    // relacion seller->lote
     public function lote(){
         return $this->belongsTo(Lote::class);
     }

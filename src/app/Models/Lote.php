@@ -17,6 +17,7 @@ class Lote extends Model
         'address',
     ];
 
+    // relación lote->sellers
     public function sellers() {
         return $this->hasMany(Seller::class, 'seller_id','id');
     }

@@ -5,6 +5,6 @@ import AppLayout from '../Layouts/AppLayout.vue';
 
 <template>
   <AppLayout>
-  <h1>¡Inertia con Vue funcionando en Docker!</h1>
+  <h1>¡Bienvenidos!</h1>
   </AppLayout>
 </template>

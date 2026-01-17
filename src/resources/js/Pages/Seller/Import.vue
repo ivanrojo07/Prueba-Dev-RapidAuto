@@ -3,6 +3,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 
+// parecido al use de react(se setean cuando se invoca el componente)
 const url = ref('');
 const loadingPreview = ref(false);
 

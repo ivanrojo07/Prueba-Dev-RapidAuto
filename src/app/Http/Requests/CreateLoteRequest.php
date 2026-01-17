@@ -27,6 +27,8 @@ class CreateLoteRequest extends FormRequest
             'name' => [
                 'required',
                 'string',
+                // valida que el nombre no este agregado previamente
+                // a excepcion del lote actual
                 Rule::unique('lotes','name')->ignore($lote_id)
             ],
             'address' => [

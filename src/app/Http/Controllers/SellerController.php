@@ -41,7 +41,9 @@ class SellerController extends Controller
         //
         $request_all = $request->all();
         $data = collect($request_all['sellers'])->toArray();
-
+        // Inserción masiva para evitar carga al uso de bd
+        // entendiendo que la validación previa evita errores
+        // en la inserción
         DB::table('sellers')->insert($data);
         return redirect()->route('seller.index');
     }
@@ -59,7 +61,7 @@ class SellerController extends Controller
      */
     public function edit(Seller $seller)
     {
-        //
+        // Obtener solo los parametros que vamos a usar
         $lotes = Lote::all(['id','name']);
         return Inertia::render('Seller/Form',compact('seller','lotes'));
     }
