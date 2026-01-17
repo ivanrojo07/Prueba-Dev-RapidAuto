@@ -86,24 +86,36 @@ const submitImport = () => {
                                 <label class="text-[10px] uppercase font-bold text-gray-400">Nombre</label>
                                 <input v-model="form.sellers[index].name" type="text" 
                                     class="w-full text-sm border-gray-300 rounded focus:ring-indigo-500" />
+                                <div v-if="form.errors[`sellers.${index}.name`]" class="text-red-500 text-xs mt-1">
+                                    {{ form.errors[`sellers.${index}.name`] }}
+                                </div>
                             </div>
 
                             <div>
                                 <label class="text-[10px] uppercase font-bold text-gray-400">Username</label>
                                 <input v-model="form.sellers[index].username" type="text" 
                                     class="w-full text-sm border-gray-300 rounded focus:ring-indigo-500" />
+                                <div v-if="form.errors[`sellers.${index}.username`]" class="text-red-500 text-xs mt-1">
+                                    {{ form.errors[`sellers.${index}.username`] }}
+                                </div>
                             </div>
 
                             <div>
                                 <label class="text-[10px] uppercase font-bold text-gray-400">Email</label>
                                 <input v-model="form.sellers[index].email" type="email" 
                                     class="w-full text-sm border-gray-300 rounded focus:ring-indigo-500" />
+                                <div v-if="form.errors[`sellers.${index}.email`]" class="text-red-500 text-xs mt-1">
+                                    {{ form.errors[`sellers.${index}.email`] }}
+                                </div>
                             </div>
 
                             <div>
                                 <label class="text-[10px] uppercase font-bold text-gray-400">Teléfono</label>
                                 <input v-model="form.sellers[index].phone" type="text" 
                                     class="w-full text-sm border-gray-300 rounded focus:ring-indigo-500" />
+                                <div v-if="form.errors[`sellers.${index}.phone`]" class="text-red-500 text-xs mt-1">
+                                    {{ form.errors[`sellers.${index}.phone`] }}
+                                </div>
                             </div>
 
                             <div>
@@ -121,6 +133,9 @@ const submitImport = () => {
                                         {{ lote.name }}
                                     </option>
                                 </select>
+                                <div v-if="form.errors[`sellers.${index}.lote_id`]" class="text-red-500 text-xs mt-1">
+                                    {{ form.errors[`sellers.${index}.lote_id`] }}
+                                </div>
                             </div>
 
                             <div class="flex items-end justify-center pb-1">

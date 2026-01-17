@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import AppLayout from '../../Layouts/AppLayout.vue';
 import ModalConfirm from '../../Components/ModalConfirm.vue';
 import { Link } from '@inertiajs/vue3';
+import { router } from '@inertiajs/vue3';
 
 const props = defineProps({
     sellers: Object,
@@ -19,7 +20,7 @@ const openModal = (id) => {
 }
 
 const handleDelete = () => {
-    router.delete(`/lote/${selectedId.value}`, {
+    router.delete(`/seller/${selectedId.value}`, {
         onSuccess: () => {
             showModal.value = false;
         }
@@ -79,6 +80,26 @@ const handleDelete = () => {
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div v-if="props.sellers?.links" class="mt-6">
+                <nav class="flex justify-center space-x-1">
+                    <template v-for="(link, k) in props.sellers.links" :key="k">
+                        <span 
+                            v-if="link.url === null" 
+                            v-html="link.label" 
+                            class="px-4 py-2 border rounded text-gray-400 bg-gray-50 cursor-default"
+                        ></span>
+                        
+                        <Link 
+                            v-else
+                            :href="link.url" 
+                            v-html="link.label"
+                            :class="{ 'bg-indigo-600 text-white border-indigo-600': link.active, 'bg-white text-gray-700 hover:bg-gray-50': !link.active }"
+                            class="px-4 py-2 border rounded transition-colors duration-200"
+                        />
+                        
+                    </template>
+                </nav>
             </div>
         </div>
     </AppLayout>

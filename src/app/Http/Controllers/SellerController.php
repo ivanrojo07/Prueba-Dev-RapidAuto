@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ImportSellerRequest;
+use App\Http\Requests\UpdateSellerRequest;
 use App\Models\Lote;
 use App\Models\Seller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class SellerController extends Controller
@@ -15,7 +18,8 @@ class SellerController extends Controller
     public function index()
     {
         //
-        $sellers = Seller::paginate(10);
+        $sellers = Seller::with('lote')->paginate(10);
+
         return Inertia::render('Seller/Index',compact('sellers'));
     }
 
@@ -32,10 +36,14 @@ class SellerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ImportSellerRequest $request)
     {
         //
-        dd($request->all());
+        $request_all = $request->all();
+        $data = collect($request_all['sellers'])->toArray();
+
+        DB::table('sellers')->insert($data);
+        return redirect()->route('seller.index');
     }
 
     /**
@@ -52,14 +60,19 @@ class SellerController extends Controller
     public function edit(Seller $seller)
     {
         //
+        $lotes = Lote::all(['id','name']);
+        return Inertia::render('Seller/Form',compact('seller','lotes'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Seller $seller)
+    public function update(UpdateSellerRequest $request, Seller $seller)
     {
         //
+        $seller->update($request->all());
+        return redirect()->route('seller.index');
+        
     }
 
     /**
@@ -68,5 +81,7 @@ class SellerController extends Controller
     public function destroy(Seller $seller)
     {
         //
+        $seller->delete();
+        return redirect()->route('seller.index');
     }
 }

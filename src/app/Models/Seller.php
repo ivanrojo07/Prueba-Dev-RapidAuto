@@ -17,6 +17,6 @@ class Seller extends Model
 
 
     public function lote(){
-        return $this->belongsTo(Lote::class,'seller_id','id');
+        return $this->belongsTo(Lote::class);
     }
 }
