@@ -60,7 +60,8 @@ const submitImport = () => {
                 <h2 class="text-xl font-bold mb-4 text-gray-800">Sincronización Masiva</h2>
                 
                 <div class="flex space-x-2 mb-8">
-                    <input v-model="url" type="url" placeholder="URL del JSON (ej. JSONPlaceholder)" 
+                    <!--  https://jsonplaceholder.typicode.com/users -->
+                    <input v-model="url" type="url" placeholder="https://jsonplaceholder.typicode.com/users" 
                         class="flex-1 rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
                     <button @click="fetchUrlData" :disabled="loadingPreview" 
                         class="bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 disabled:opacity-50 font-medium">
